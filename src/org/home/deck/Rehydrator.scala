@@ -3,10 +3,10 @@ package org.home.deck
 /**
   * Created by ubuntu on 10/16/16.
   */
-class Rehydrator[S] {
+class Rehydrator[+S] {
 
-  def combine(state: Any, event: Event): Any = state
+  def combine[I >: S](state: I, event: Event): I = state
 
-  def rehydrate(events: Array[Event]): Option[Any] = events reduceLeftOption combine
+  def rehydrate[I >: S](events: Array[Event]): Option[I] = events reduceLeftOption combine
 
 }
